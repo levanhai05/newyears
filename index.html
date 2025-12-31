@@ -5,57 +5,10 @@
 <title>Happy New Year 2026</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- FONT ĐẶC BIỆT -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Great+Vibes&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
 
 <style>
-    /* ===== MOBILE OPTIMIZATION ===== */
-@media (max-width: 768px){
-
-    #startScreen{
-        font-size:1.1rem;
-        padding:20px;
-        text-align:center;
-    }
-
-    #countdown{
-        margin-top:180px;
-        gap:12px;
-    }
-
-    .time{
-        min-width:70px;
-        padding:12px 10px;
-        border-radius:14px;
-    }
-
-    .time h2{
-        font-size:1.6rem;
-    }
-
-    .time span{
-        font-size:.6rem;
-    }
-
-    .line.title{
-        font-size:2.2rem;
-        padding:0 14px;
-    }
-
-    .line.text{
-        font-size:1.2rem;
-        padding:0 16px;
-        line-height:1.5;
-    }
-
-    #stage2{
-        font-size:40vw; /* số 3 2 1 to nhưng không tràn */
-    }
-
-    .float-item img{
-        width:60px;
-    }
-}
-
 *{margin:0;padding:0;box-sizing:border-box}
 body{
     color:white;
@@ -64,7 +17,16 @@ body{
     background:black;
 }
 
-/* OVERLAY */
+/* VIDEO NỀN */
+video.bg{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter:brightness(.5) contrast(1.15);
+    z-index:-5;
+}
 .overlay{
     position:fixed;
     inset:0;
@@ -88,7 +50,7 @@ body{
     cursor:pointer;
 }
 
-/* STAGE 1 */
+/* ===== STAGE 1 ===== */
 #stage1{
     position:fixed;
     inset:0;
@@ -97,6 +59,7 @@ body{
     justify-content:center;
     align-items:center;
 }
+
 .stage1-video{
     position:absolute;
     inset:0;
@@ -104,23 +67,49 @@ body{
     height:100%;
     object-fit:cover;
     z-index:-3;
+    filter:brightness(.9) contrast(1.2);
 }
+
+.stage1-content{
+    text-align:center;
+    animation:fadeUp 2s ease forwards;
+}
+
 #countdown{
     display:flex;
     gap:26px;
+    justify-content:center;
+    flex-wrap:wrap;
     margin-top:280px;
 }
+
 .time{
     min-width:120px;
     padding:24px 30px;
     border-radius:22px;
     background:rgba(255,255,255,.08);
     backdrop-filter:blur(18px);
+    box-shadow:
+        inset 0 0 20px rgba(255,255,255,.08),
+        0 0 40px rgba(255,215,0,.15);
 }
-.time h2{font-size:2.8rem}
-.time span{font-size:.8rem;opacity:.7}
 
-/* STAGE 2 */
+.time h2{
+    font-size:2.8rem;
+    text-shadow:0 0 18px rgba(255,255,255,.9);
+}
+.time span{
+    font-size:.8rem;
+    opacity:.7;
+    letter-spacing:2px;
+}
+
+@keyframes fadeUp{
+    from{opacity:0;transform:translateY(40px);filter:blur(10px)}
+    to{opacity:1;transform:translateY(0);filter:blur(0)}
+}
+
+/* ===== STAGE 2 ===== */
 #stage2{
     position:absolute;
     inset:0;
@@ -130,9 +119,10 @@ body{
     background:black;
     font-size:30vw;
     font-weight:bold;
+    text-shadow:0 0 180px white;
 }
 
-/* STAGE 3 */
+/* ===== STAGE 3 ===== */
 #stage3{
     position:absolute;
     inset:0;
@@ -140,9 +130,10 @@ body{
     justify-content:center;
     align-items:center;
     flex-direction:column;
+    pointer-events:none;
 }
 
-/* FIREWORK */
+/* PHÁO HOA */
 #fireworkVideo{
     position:fixed;
     inset:0;
@@ -151,51 +142,94 @@ body{
     object-fit:cover;
     z-index:-1;
     opacity:0;
-    transition:opacity 3s;
+    transition:opacity 3s ease;
 }
 #fireworkVideo.show{opacity:1}
 
 /* TEXT */
+#lineWrap{z-index:5}
+
 .line{
     opacity:0;
-    animation:tetText 10s forwards;
+    transform:translateY(60px) scale(.95);
+    filter:blur(25px);
     margin:18px 0;
+    animation:tetText 10s forwards;
     text-align:center;
 }
+
 .line.title{
     font-family:"Great Vibes",cursive;
     font-size:3.4rem;
     color:#ffd700;
+    text-shadow:
+        0 0 40px rgba(255,215,0,1),
+        0 0 100px rgba(255,80,0,.8);
 }
+
 .line.text{
     font-family:"Cormorant Garamond",serif;
     font-size:1.7rem;
+    color:white;
+    letter-spacing:1px;
+    text-shadow:
+        0 0 25px rgba(255,255,255,.9),
+        0 0 60px rgba(255,120,120,.6);
 }
-.line:nth-child(n){animation-delay:calc((var(--i) - 1) * 2.5s)}
+
+.line:nth-child(1){animation-delay:0s}
+.line:nth-child(2){animation-delay:2.5s}
+.line:nth-child(3){animation-delay:5s}
+.line:nth-child(4){animation-delay:7.5s}
+.line:nth-child(5){animation-delay:10s}
+.line:nth-child(6){animation-delay:12.5s}
+.line:nth-child(7){animation-delay:15s}
+.line:nth-child(8){animation-delay:17.5s}
+.line:nth-child(9){animation-delay:20s}
+.line:nth-child(10){animation-delay:22.5s}
+.line:nth-child(11){animation-delay:25s}
+.line:nth-child(12){animation-delay:27.5s}
 
 @keyframes tetText{
-    0%{opacity:0;transform:translateY(40px)}
-    20%{opacity:1;transform:translateY(0)}
-    80%{opacity:1}
-    100%{opacity:0;transform:translateY(-40px)}
+    0%{opacity:0;filter:blur(25px);transform:translateY(60px)}
+    20%{opacity:1;filter:blur(0);transform:translateY(0)}
+    70%{opacity:1}
+    100%{opacity:0;filter:blur(25px);transform:translateY(-40px)}
 }
 
-/* FLOATING */
+/* ẢNH + TIM BAY */
 #floating{
     position:fixed;
     inset:0;
     pointer-events:none;
+    z-index:4;
 }
 .float-item{
     position:absolute;
     bottom:-120px;
     animation:floatUp linear forwards;
 }
-.float-item img{width:90px;border-radius:16px}
+.float-item img{
+    width:90px;
+    border-radius:16px;
+    box-shadow:0 0 30px rgba(255,255,255,.5);
+}
+.float-heart{
+    font-size:26px;
+    color:#ff5a8a;
+    text-shadow:0 0 25px rgba(255,90,138,1);
+}
+
 @keyframes floatUp{
-    from{transform:translateY(0);opacity:0}
+    from{transform:translateY(0) scale(.8);opacity:0}
     10%{opacity:1}
-    to{transform:translateY(-120vh);opacity:0}
+    to{transform:translateY(-120vh) scale(1.4);opacity:0}
+}
+
+/* MOBILE */
+@media(max-width:768px){
+    .line.title{font-size:2.6rem}
+    .line.text{font-size:1.3rem}
 }
 </style>
 </head>
@@ -210,29 +244,45 @@ body{
     <video class="stage1-video" autoplay muted loop>
         <source src="1.mp4">
     </video>
-    <div id="countdown">
-        <div class="time"><h2 id="d">0</h2><span>DAYS</span></div>
-        <div class="time"><h2 id="h">0</h2><span>HOURS</span></div>
-        <div class="time"><h2 id="m">0</h2><span>MINUTES</span></div>
-        <div class="time"><h2 id="s">0</h2><span>SECONDS</span></div>
+
+    <div class="stage1-content">
+        <div id="countdown">
+            <div class="time"><h2 id="d">0</h2><span>DAYS</span></div>
+            <div class="time"><h2 id="h">0</h2><span>HOURS</span></div>
+            <div class="time"><h2 id="m">0</h2><span>MINUTES</span></div>
+            <div class="time"><h2 id="s">0</h2><span>SECONDS</span></div>
+        </div>
     </div>
 </div>
 
+<!-- STAGE 2 -->
 <div id="stage2">3</div>
 
+<!-- STAGE 3 -->
 <div id="stage3">
     <video id="fireworkVideo" muted loop>
         <source src="phao.mp4">
     </video>
-    <div>
-        <div class="line title" style="--i:1">Happy New Year 2026</div>
-        <div class="line text" style="--i:2">Năm cũ khép lại với nhiều kỷ niệm</div>
-        <div class="line text" style="--i:3">Nhưng anh vẫn có em bên cạnh</div>
-        <div class="line text" style="--i:4">Và anh vẫn luôn ở đây ❤️</div>
+
+    <div id="lineWrap">
+        <div class="line title">Happy New Year 2026</div>
+        <div class="line text">Năm cũ khép lại với thật nhiều kỷ niệm</div>
+        <div class="line text">Có niềm vui, có cả những lúc buồn</div>
+        <div class="line text">Nhưng điều tuyệt vời nhất</div>
+        <div class="line text">Là anh vẫn có em bên cạnh</div>
+        <div class="line text">Bước sang năm mới</div>
+        <div class="line text">Anh không mong gì hơn</div>
+        <div class="line text">Chỉ mong em luôn khỏe mạnh</div>
+        <div class="line text">Luôn cười thật nhiều</div>
+        <div class="line text">Và nếu một ngày em mệt mỏi</div>
+        <div class="line text">Hãy nhớ rằng</div>
+        <div class="line text">Và anh vẫn luôn ở đây ❤️</div>
     </div>
+
     <div id="floating"></div>
 </div>
 
+<!-- AUDIO -->
 <audio id="music1" src="1.mp3" loop></audio>
 <audio id="music2" src="2.mp3"></audio>
 <audio id="music3" src="music.mp3" loop></audio>
@@ -249,6 +299,7 @@ startScreen.onclick=()=>{
     music1.play();
 };
 
+/* COUNTDOWN */
 const target=new Date("2026-01-01T00:00:00").getTime();
 const d=document.getElementById("d"),
       h=document.getElementById("h"),
@@ -279,6 +330,7 @@ function final(){
             clearInterval(iv);
             stage2.style.display="none";
             music2.pause();
+            music3.volume=.8;
             music3.play();
             stage3.style.display="flex";
             fireworkVideo.classList.add("show");
@@ -288,13 +340,22 @@ function final(){
     },1000);
 }
 
+/* ẢNH + TIM BAY */
 function startFloating(){
     setInterval(()=>{
-        const el=document.createElement("div");
-        el.className="float-item";
-        el.style.left=Math.random()*100+"%";
-        el.style.animationDuration=8+Math.random()*6+"s";
-        el.innerHTML=Math.random()>.5?`<img src="img8.jpg">`:`❤️`;
+        const el = document.createElement("div");
+        el.className = "float-item";
+        el.style.left = Math.random() * 100 + "%";
+        el.style.animationDuration = 8 + Math.random() * 6 + "s";
+
+        if (Math.random() > 0.5) {
+            const imgs = ["img8.jpg", "img9.jpg"];
+            const img = imgs[Math.floor(Math.random() * imgs.length)];
+            el.innerHTML = `<img src="${img}">`;
+        } else {
+            el.innerHTML = `<div class="float-heart">❤️</div>`;
+        }
+
         floating.appendChild(el);
         setTimeout(()=>el.remove(),15000);
     },700);
