@@ -8,6 +8,54 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Great+Vibes&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
 
 <style>
+    /* ===== MOBILE OPTIMIZATION ===== */
+@media (max-width: 768px){
+
+    #startScreen{
+        font-size:1.1rem;
+        padding:20px;
+        text-align:center;
+    }
+
+    #countdown{
+        margin-top:180px;
+        gap:12px;
+    }
+
+    .time{
+        min-width:70px;
+        padding:12px 10px;
+        border-radius:14px;
+    }
+
+    .time h2{
+        font-size:1.6rem;
+    }
+
+    .time span{
+        font-size:.6rem;
+    }
+
+    .line.title{
+        font-size:2.2rem;
+        padding:0 14px;
+    }
+
+    .line.text{
+        font-size:1.2rem;
+        padding:0 16px;
+        line-height:1.5;
+    }
+
+    #stage2{
+        font-size:40vw; /* số 3 2 1 to nhưng không tràn */
+    }
+
+    .float-item img{
+        width:60px;
+    }
+}
+
 *{margin:0;padding:0;box-sizing:border-box}
 body{
     color:white;
